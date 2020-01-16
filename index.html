@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>~</title>
+    <meta name="description" content="A slowly decaying version of this must be the place">
+    <meta name="author" content="@dreadnip">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="hold.png">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items:center;
+            min-height: 100vh;
+            flex-direction: column;
+            font-size: 1.5rem;
+            line-height: 1.5;
+        }
+        p {
+            max-width: 40rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <p>The Disintegration Heads</p>
+    </header>
+    <audio controls muted autoplay>
+
+    </audio>
+    <button id="unmuteButton">Unmute</button>
+    <footer>
+        <p>Every 4 minutes, this page will decode and re-encode an MP3 of This Must Be The Place by Talking Heads. Doing so results in minimal quality loss every iteration. The end result is a slowly deteriorating sound file.</p>
+    </footer>
+    <script>
+        const player = document.querySelector("audio");
+
+        function loadAndPlay() {
+            const url = "file:///Users/sander/Documents/proj/loop/input.mp3?cb=" + new Date().getTime();
+            player.setAttribute('src', url);
+            player.load();
+            player.play();
+        }
+
+        player.addEventListener("ended", loadAndPlay());
+
+
+        unmuteButton.addEventListener('click', function() {
+            player.muted = false;
+        });
+    </script>
+</body>
+</html>
