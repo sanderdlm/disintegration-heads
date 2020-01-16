@@ -27,10 +27,7 @@
     <header>
         <p>The Disintegration Heads</p>
     </header>
-    <audio controls muted autoplay>
-
-    </audio>
-    <button id="unmuteButton">Unmute</button>
+    <audio controls muted autoplay></audio>
     <footer>
         <p>Every 4 minutes, this page will decode and re-encode an MP3 of This Must Be The Place by Talking Heads. Doing so results in minimal quality loss every iteration. The end result is a slowly deteriorating sound file.</p>
     </footer>
@@ -38,7 +35,8 @@
         const player = document.querySelector("audio");
 
         function loadAndPlay() {
-            const url = "file:///Users/sander/Documents/proj/loop/input.mp3?cb=" + new Date().getTime();
+            /* A timestamp is added to the source file so the browser is required to fetch a new one every time. */
+            const url = "src/input.mp3?t=" + new Date().getTime();
             player.setAttribute('src', url);
             player.load();
             player.play();
@@ -46,10 +44,10 @@
 
         player.addEventListener("ended", loadAndPlay());
 
-
-        unmuteButton.addEventListener('click', function() {
-            player.muted = false;
-        });
+        /* For some reason the ended event doesn't capture right now.
+         * I still have to fix it so that the source is reloaded every time
+         * and the playback restarted.
+         */
     </script>
 </body>
 </html>
